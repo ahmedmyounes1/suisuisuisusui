@@ -2,55 +2,63 @@ database:::::::::
 use master;
 Create database BankSystem3
 use BankSystem3;
-create table bank(
-	bank_id INT PRIMARY KEY,
-	bank_name	varchar(40),
-	bank_address VARCHAR(255),
-	bank_branches varchar(40)
-	
-	);
+create table bank (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name    varchar(40),
+    address VARCHAR(255),
+    branches varchar(40)
+    
+    );
+
 CREATE TABLE Branch (
-  branch_id INT PRIMARY KEY,
+  id INT IDENTITY(1,1) PRIMARY KEY,
   bank_id INT,
   branch_number VARCHAR(50),
   bank_address VARCHAR(255),
-  FOREIGN KEY (Bank_id) REFERENCES Bank(Bank_id)
+  FOREIGN KEY (Bank_id) REFERENCES Bank(id)
 );
 
 CREATE TABLE Customer (
-  customer_id INT PRIMARY KEY,
-  costumer_ssn VARCHAR(20),
-  customer_name VARCHAR(255),
-  customer_phone VARCHAR(20),
-  customer_address VARCHAR(255)
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  ssn VARCHAR(20),
+  name VARCHAR(255),
+  phone VARCHAR(20),
+  address VARCHAR(255),
+  password varchar(40)
 );
 
 CREATE TABLE Account (
-  account_number INT PRIMARY KEY,
+  number INT IDENTITY(1,1) PRIMARY KEY,
   customer_id INT,
-  account_balance DECIMAL(10,2),
-  account_type VARCHAR(50),
-  FOREIGN KEY (customer_id) REFERENCES Customer(customer_iD)
+  balance DECIMAL(10,2),
+  type VARCHAR(50),
+  FOREIGN KEY (customer_id) REFERENCES Customer(id)
 );
 
 CREATE TABLE Loan (
-  LoanID INT PRIMARY KEY,
+  id INT IDENTITY(1,1) PRIMARY KEY,
   BranchID INT,
   CustomerID INT,
   LoanType VARCHAR(50),
   LoanAmount DECIMAL(10,2),
-  FOREIGN KEY (BranchID) REFERENCES Branch(branch_id),
-  FOREIGN KEY (CustomerID) REFERENCES Customer(customer_id)
+  FOREIGN KEY (BranchID) REFERENCES Branch(id),
+  FOREIGN KEY (CustomerID) REFERENCES Customer(id)
 );
 
 
 
 -- Insert explicit values
-INSERT INTO Bank (bank_id, bank_name, bank_branches, bank_address)
+INSERT INTO Bank (name, branches, address)
 VALUES
-  (1, 'Bank A', 'Branch A', 'Address A'),
-  (2, 'Bank B', 'Branch B', 'Address B'),
-  (3, 'Bank C', 'Branch C', 'Address C'),
-  (4, 'Bank D', 'Branch D', 'Address D'),
-  (5, 'Bank E', 'Branch E', 'Address E');
+  ('Bank A', 'Branch A', 'Address A'),
+  ('Bank B', 'Branch B', 'Address B'),
+  ('Bank C', 'Branch C', 'Address C'),
+  ('Bank D', 'Branch D', 'Address D'),
+  ('Bank E', 'Branch E', 'Address E');
+
+
+INSERT INTO Customer (ssn, name, phone, address, password)
+VALUES
+  ('3030', 'shehab', '01100121212', 'maadi', '123'),
+  ('3020', 'younis', '01100131313', 'AlShrouq', '145');
 
