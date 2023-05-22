@@ -21,6 +21,15 @@ namespace WindowsFormsApp1
             }
         }
 
-       
+        public List<customer> GetCustomers()
+        {
+            using (System.Data.IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("SampleDB")))
+            {
+                var output = (List<customer>)connection.Query<customer>($"SELECT * FROM customer");
+                
+                return output;
+            }
+
+        }
     }
 }

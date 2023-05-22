@@ -16,56 +16,56 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new login());
         }
     }
     public class bank
     {
-        public int bank_id { get; set; }
-        public string bank_name { get; set; }
-        public string bank_address { get; set; }
-        public List<branch> bank_branches { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public List<branch> branches { get; set; }
 
         public string Fullinfo
         {
             get {
-                return $"{bank_name} {bank_address}";
+                return $"{name} {address}";
                 }
         }
     }
     public class branch
     {
-        public int branch_id { get; set; }
+        public int id { get; set; }
         public string branch_number { get; set; }
-        public string branch_address { get; set; }
+        public string bank_address { get; set; }
         public int bank_id { get; set; }
 
     }
-    public class costumer
+    public class customer
     {
-        public string customer_name { get; set; }
-        public string customer_address { get; set; }
-        public int customer_id { get; set; }
-        public int customer_phone { get; set; }
-        public string customer_ssn { get; set; }
+        public int id { get; set; }
+        public string ssn { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public string phone { get; set; }
+        public string password { get; set; }
 
     }
     public class account
     {
-        public int account_id { get; set; }
-        public int account_number { get; set; }
-        public decimal account_balance { get; set; }
-        public int costumer_id { get; set; }
-        public string account_type { get; set; }
+        public int customer_id { get; set; }
+        public int number { get; set; }
+        public decimal balance { get; set; }
+        public string type { get; set; }
 
     }
     public class loan
     {
-        public int loan_id { get; set; }
-        public decimal loan_amount { get; set; }
-        public int branch_id { get; set; }
-        public int customer_id { get; set; }
-        public string loan_type { get; set; }
+        public int id { get; set; }
+        public decimal loanAmount { get; set; }
+        public int BranchID { get; set; }
+        public int CustomerID { get; set; }
+        public string LoanType { get; set; }
 
     }
 }
