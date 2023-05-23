@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +31,16 @@ namespace WindowsFormsApp1
                 
                 return output;
             }
+        }
 
+        public void CreateCustomer(customer new_customer)
+        {
+            using (IDbConnection connection = new SqlConnection(helper.CnnVal("SampleDB")))
+            {
+                string sql = "INSERT INTO Customer (ssn, name, phone, address, password) " +
+                             "VALUES (@ssn, @name, @phone, @address, @password)";
+                connection.Execute(sql, new_customer);
+            }
         }
     }
 }
